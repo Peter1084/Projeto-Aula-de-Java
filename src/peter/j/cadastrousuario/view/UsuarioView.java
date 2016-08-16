@@ -144,6 +144,12 @@ public class UsuarioView extends javax.swing.JInternalFrame {
         jLabel1.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         jLabel1.setText("Código");
 
+        jtfCodigo.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                jtfCodigoFocusLost(evt);
+            }
+        });
+
         jLabel2.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         jLabel2.setText("Nome");
 
@@ -348,6 +354,7 @@ public class UsuarioView extends javax.swing.JInternalFrame {
     private void jbtListarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtListarActionPerformed
         this.controller.pesquisar();
         DefaultTableModel model = (DefaultTableModel) jtbLista.getModel();
+        model.setRowCount(0);
         for (int i = 0; i < this.controller.getLista().size(); i++) {
             model.addRow(new Object[]{
                 this.controller.getLista().get(i).getCodigo().toString(),
@@ -355,6 +362,10 @@ public class UsuarioView extends javax.swing.JInternalFrame {
             });
         }
     }//GEN-LAST:event_jbtListarActionPerformed
+
+    private void jtfCodigoFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jtfCodigoFocusLost
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jtfCodigoFocusLost
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

@@ -108,7 +108,7 @@ public class UsuarioDao {
                 u.setCodigo(rs.getInt("codigo"));
                 u.setNome(rs.getString("nome"));
                 u.setLogin(rs.getString("login"));
-                u.setSenha(rs.getNString("senha"));
+                u.setSenha(rs.getString("senha"));
                 u.setStatus(rs.getInt("status"));
                 u.setTipo(rs.getInt("tipo"));
                 lst.add(u);
