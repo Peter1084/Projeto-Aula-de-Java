@@ -19,7 +19,7 @@ public class UsuarioController {
 
     public UsuarioController() {
         this.dao = new UsuarioDao();
-        this.usuarioManipulado = new Usuario();
+        this.usuarioManipulado = null;
         this.lista = new ArrayList<Usuario>();
     }
     

@@ -14,7 +14,7 @@ import peter.j.cadastrousuario.controller.UsuarioController;
  * @author Peterson
  */
 public class UsuarioView extends javax.swing.JInternalFrame {
-    
+
     private UsuarioController controller;
 
     /**
@@ -316,37 +316,42 @@ public class UsuarioView extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_jbtCancelarActionPerformed
 
     private void jbtSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtSalvarActionPerformed
-        enviarForm();
-        try  {
-           this.controller.salvar();
-           this.LimparCampos();  
-           JOptionPane.showMessageDialog(this, "Salvo Com Sucesso!!");
-        }catch  (Exception e){
-           JOptionPane.showMessageDialog(this, "Erro Ao Salvar!!" + e.getMessage()); 
+
+        if (!(this.controller.getUsuarioManipulado() == null)) {
+            enviarForm();
+            try {
+                this.controller.salvar();
+                this.LimparCampos();
+                JOptionPane.showMessageDialog(this, "Salvo Com Sucesso!!");
+            } catch (Exception e) {
+                JOptionPane.showMessageDialog(this, "Erro Ao Salvar!!" + e.getMessage(),"Erro",JOptionPane.ERROR_MESSAGE);
+            }
+        } else {
+            JOptionPane.showMessageDialog(this, "Não há nada para salvar!", "Alerta",JOptionPane.WARNING_MESSAGE);
         }
-       
+
     }//GEN-LAST:event_jbtSalvarActionPerformed
 
     private void jbtExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtExcluirActionPerformed
-        if (!(this.controller.getUsuarioManipulado()==null)) {
-            if (JOptionPane.showConfirmDialog(null,"Deseja realmente remover este registro?",
-                "Excluir registro", 
-                JOptionPane.YES_NO_OPTION)
-                == JOptionPane.YES_OPTION) {
-           this.controller.excluir(); 
+        if (!(this.controller.getUsuarioManipulado() == null)) {
+            if (JOptionPane.showConfirmDialog(null, "Deseja realmente remover este registro?",
+                    "Excluir registro",
+                    JOptionPane.YES_NO_OPTION)
+                    == JOptionPane.YES_OPTION) {
+                this.controller.excluir();
+            }
         } else {
-            JOptionPane.showMessageDialog(this, "Não há nada para excluir!");
-        }
+            JOptionPane.showMessageDialog(this, "Não há nada para excluir!", "Alerta",JOptionPane.WARNING_MESSAGE);
         }
     }//GEN-LAST:event_jbtExcluirActionPerformed
 
     private void jbtListarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtListarActionPerformed
         this.controller.pesquisar();
-        DefaultTableModel model = (DefaultTableModel)jtbLista.getModel();
-        for (int i = 0; i <this.controller.getLista().size(); i++) {
-            model.addRow(new Object[] {
+        DefaultTableModel model = (DefaultTableModel) jtbLista.getModel();
+        for (int i = 0; i < this.controller.getLista().size(); i++) {
+            model.addRow(new Object[]{
                 this.controller.getLista().get(i).getCodigo().toString(),
-                this.controller.getLista().get(i).getNome() 
+                this.controller.getLista().get(i).getNome()
             });
         }
     }//GEN-LAST:event_jbtListarActionPerformed
@@ -380,30 +385,30 @@ public class UsuarioView extends javax.swing.JInternalFrame {
     // End of variables declaration//GEN-END:variables
 
     private void habilitarCampos() {
-      jtfNome.setEnabled(true);
-      jtfLogin.setEnabled(true);
-      jcbTipo.setEnabled(true);
-      jckAtivo.setEnabled(true);
-      jpwSenha.setEnabled(true);
-      jpwConfirmacao.setEnabled(true);
-      jtfCodigo.setEnabled(false);
+        jtfNome.setEnabled(true);
+        jtfLogin.setEnabled(true);
+        jcbTipo.setEnabled(true);
+        jckAtivo.setEnabled(true);
+        jpwSenha.setEnabled(true);
+        jpwConfirmacao.setEnabled(true);
+        jtfCodigo.setEnabled(false);
     }
 
     private void desabilitarCampos() {
-      jtfNome.setEnabled(false);
-      jtfLogin.setEnabled(false);
-      jcbTipo.setEnabled(false);
-      jckAtivo.setEnabled(false);
-      jpwSenha.setEnabled(false);
-      jpwConfirmacao.setEnabled(false);
-      jtfCodigo.setEnabled(true); 
+        jtfNome.setEnabled(false);
+        jtfLogin.setEnabled(false);
+        jcbTipo.setEnabled(false);
+        jckAtivo.setEnabled(false);
+        jpwSenha.setEnabled(false);
+        jpwConfirmacao.setEnabled(false);
+        jtfCodigo.setEnabled(true);
     }
 
     private void enviarForm() {
         if (this.jtfCodigo.getText().equals("")) {
             this.controller.getUsuarioManipulado().setCodigo(null);
         } else {
-           this.controller.getUsuarioManipulado().setCodigo(Integer.parseInt(this.jtfCodigo.getText())); 
+            this.controller.getUsuarioManipulado().setCodigo(Integer.parseInt(this.jtfCodigo.getText()));
         }
         this.controller.getUsuarioManipulado().setNome(this.jtfNome.getText());
         this.controller.getUsuarioManipulado().setLogin(this.jtfLogin.getText());
@@ -415,7 +420,7 @@ public class UsuarioView extends javax.swing.JInternalFrame {
             this.controller.getUsuarioManipulado().setStatus(0);
         }
     }
-    
+
     private void LimparCampos() {
         jtfLogin.setText("");
         jtfNome.setText("");
@@ -424,6 +429,6 @@ public class UsuarioView extends javax.swing.JInternalFrame {
         jckAtivo.setSelected(false);
         jpwConfirmacao.setText("");
         jpwSenha.setText("");
-        
+
     }
 }
