@@ -5,9 +5,11 @@
  */
 package peter.j.cadastrousuario.view;
 
+import java.util.List;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import peter.j.cadastrousuario.controller.UsuarioController;
+import peter.j.cadastrousuario.model.domain.Usuario;
 
 /**
  *
@@ -364,7 +366,33 @@ public class UsuarioView extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_jbtListarActionPerformed
 
     private void jtfCodigoFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jtfCodigoFocusLost
-        // TODO add your handling code here:
+        if (!jtfCodigo.getText().equals("")) {
+            
+            try {
+              int parseInt = Integer.parseInt(jtfCodigo.getText());
+              this.controller.pesquisar();
+                List<Usuario> lista = this.controller.getLista();
+                
+                if (lista.size() > 0) {
+                    for (int i = 0; i < lista.size(); i++) {
+                        if (lista.get(i).getCodigo().equals(parseInt)){
+                            this.controller.setUsuarioManipulado(lista.get(i));
+                            this.recebeForm();
+                            this.habilitarCampos();
+                            break;
+                    }
+                    }
+                        
+                } else {
+                   JOptionPane.showMessageDialog(this, "Não ha nada a listar!", "Alerta",JOptionPane.WARNING_MESSAGE);  
+                }
+            } catch (Exception e) {
+                
+                JOptionPane.showMessageDialog(this, "Número inválido!", "Alerta",JOptionPane.WARNING_MESSAGE);
+                jtfCodigo.requestFocus();
+                
+            }
+        }
     }//GEN-LAST:event_jtfCodigoFocusLost
 
 
@@ -441,5 +469,21 @@ public class UsuarioView extends javax.swing.JInternalFrame {
         jpwConfirmacao.setText("");
         jpwSenha.setText("");
 
+    }
+
+    private void recebeForm() {
+       jtfCodigo.setText(this.controller.getUsuarioManipulado().getCodigo().toString());
+       jtfNome.setText(this.controller.getUsuarioManipulado().getNome());
+       jtfLogin.setText(this.controller.getUsuarioManipulado().getLogin());
+       
+       jcbTipo.setSelectedItem(this.controller.getUsuarioManipulado().getTipo());
+       
+       if (this.controller.getUsuarioManipulado().getStatus()==1) {
+           jckAtivo.setSelected(true);
+       } else {
+           jckAtivo.setSelected(false);
+       }
+        jpwSenha.setText(this.controller.getUsuarioManipulado().getSenha());
+        jpwConfirmacao.setText(this.controller.getUsuarioManipulado().getSenha());
     }
 }
