@@ -5,7 +5,9 @@
  */
 package peter.j.cadastrousuario.view;
 
+import java.awt.Dimension;
 import javax.swing.JFrame;
+import javax.swing.JInternalFrame;
 
 /**
  *
@@ -73,6 +75,7 @@ public class MenuView extends javax.swing.JFrame {
         UsuarioView usuarioView = new UsuarioView();
         this.desktopPane.add(usuarioView);
         usuarioView.setVisible(true);
+        this.centralizarForm(usuarioView);
     }//GEN-LAST:event_openMenuItemActionPerformed
 
     /**
@@ -116,5 +119,11 @@ public class MenuView extends javax.swing.JFrame {
     private javax.swing.JMenuBar menuBar;
     private javax.swing.JMenuItem openMenuItem;
     // End of variables declaration//GEN-END:variables
+
+    private void centralizarForm(JInternalFrame form) {
+      Dimension desktopPanel = this.desktopPane.getSize();
+      Dimension jifSize = form.getSize();
+      form.setLocation(( desktopPanel.width - jifSize.width )/2 , ( desktopPanel.height - jifSize.height )/2);
+    }
 
 }
