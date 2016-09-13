@@ -36,15 +36,18 @@ public class MenuView extends javax.swing.JFrame {
         menuBar = new javax.swing.JMenuBar();
         fileMenu = new javax.swing.JMenu();
         openMenuItem = new javax.swing.JMenuItem();
+        jSeparator1 = new javax.swing.JPopupMenu.Separator();
+        jMenuItem1 = new javax.swing.JMenuItem();
+        jMenuItem2 = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Cadastro de Usuários");
         setResizable(false);
 
-        fileMenu.setMnemonic('f');
+        fileMenu.setMnemonic('C');
         fileMenu.setText("Cadastros");
 
-        openMenuItem.setMnemonic('o');
+        openMenuItem.setMnemonic('U');
         openMenuItem.setText("Usuario");
         openMenuItem.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -52,6 +55,25 @@ public class MenuView extends javax.swing.JFrame {
             }
         });
         fileMenu.add(openMenuItem);
+        fileMenu.add(jSeparator1);
+
+        jMenuItem1.setMnemonic('M');
+        jMenuItem1.setText("Marca");
+        jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem1ActionPerformed(evt);
+            }
+        });
+        fileMenu.add(jMenuItem1);
+
+        jMenuItem2.setMnemonic('G');
+        jMenuItem2.setText("Grupo");
+        jMenuItem2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem2ActionPerformed(evt);
+            }
+        });
+        fileMenu.add(jMenuItem2);
 
         menuBar.add(fileMenu);
 
@@ -78,6 +100,21 @@ public class MenuView extends javax.swing.JFrame {
         this.centralizarForm(usuarioView);
     }//GEN-LAST:event_openMenuItemActionPerformed
 
+    private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
+       MarcaView marcaView = new MarcaView();
+        this.desktopPane.add(marcaView);
+        marcaView.setVisible(true);
+        this.centralizarForm(marcaView);
+    }//GEN-LAST:event_jMenuItem1ActionPerformed
+
+    private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
+        GrupoView grupoView = new GrupoView();
+        this.desktopPane.add(grupoView);
+        grupoView.setVisible(true);
+        this.centralizarForm(grupoView);
+    }//GEN-LAST:event_jMenuItem2ActionPerformed
+                      
+   
     /**
      * @param args the command line arguments
      */
@@ -116,6 +153,9 @@ public class MenuView extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JDesktopPane desktopPane;
     private javax.swing.JMenu fileMenu;
+    private javax.swing.JMenuItem jMenuItem1;
+    private javax.swing.JMenuItem jMenuItem2;
+    private javax.swing.JPopupMenu.Separator jSeparator1;
     private javax.swing.JMenuBar menuBar;
     private javax.swing.JMenuItem openMenuItem;
     // End of variables declaration//GEN-END:variables

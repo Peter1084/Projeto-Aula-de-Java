@@ -309,6 +309,8 @@ public class UsuarioView extends javax.swing.JInternalFrame {
                 .addComponent(jtbListar, javax.swing.GroupLayout.DEFAULT_SIZE, 181, Short.MAX_VALUE))
         );
 
+        jPanel3.getAccessibleContext().setAccessibleDescription("");
+
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
